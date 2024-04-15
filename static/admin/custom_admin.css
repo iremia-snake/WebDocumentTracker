@@ -1,0 +1,84 @@
+html[data-theme="light"], :root {
+    --primary: #79aec8;
+    /*--secondary: #417690;*/
+    --secondary: #4c80d3;
+    /*--accent: #f5dd5d;*/
+    --accent: #fff098;
+    --primary-fg: #fff;
+    --body-fg: #333;
+    --body-bg: #fff;
+    --body-quiet-color: #666;
+    --body-loud-color: #000;
+    /*--header-color: #ffc;*/
+    --header-color: var(--accent);
+    --header-branding-color: var(--accent);
+    --header-bg: var(--secondary);
+    --header-link-color: var(--primary-fg);
+    --breadcrumbs-fg: #c4dce8;
+    --breadcrumbs-link-fg: var(--body-bg);
+    /*--breadcrumbs-bg: #264b5d;*/
+    --breadcrumbs-bg: #2e5086;
+    /*--link-fg: #417893;*/
+    --link-fg: var(--breadcrumbs-bg);
+    /*--link-hover-color: #036;*/
+    --link-hover-color: var(--link-fg);
+    --link-selected-fg: var(--secondary);
+    --hairline-color: #e8e8e8;
+    --border-color: #ccc;
+    --error-fg: #ba2121;
+    --message-success-bg: #dfd;
+    --message-warning-bg: #ffc;
+    --message-error-bg: #ffefef;
+    /*--darkened-bg: #f8f8f8;*/
+    --darkened-bg: #f0f0f8;
+    --selected-bg: #e4e4e4;
+    /*--selected-row: #ffc;*/
+    --selected-row: var(--accent);
+    --button-fg: #fff;
+    --button-bg: var(--secondary);
+    --button-hover-bg: #205067;
+    --default-button-bg: #205067;
+    --default-button-hover-bg: var(--secondary);
+    --close-button-bg: #747474;
+    --close-button-hover-bg: #333;
+    --delete-button-bg: #ba2121;
+    --delete-button-hover-bg: #a41515;
+    --object-tools-fg: var(--button-fg);
+    --object-tools-bg: var(--close-button-bg);
+    --object-tools-hover-bg: var(--close-button-hover-bg);
+    --font-family-primary: "Segoe UI", system-ui, Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    --font-family-monospace: ui-monospace, Menlo, Monaco, "Cascadia Mono", "Segoe UI Mono", "Roboto Mono", "Oxygen Mono", "Ubuntu Monospace", "Source Code Pro", "Fira Mono", "Droid Sans Mono", "Courier New", monospace, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+}
+
+body{
+    background-image:
+        linear-gradient(rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.4)),
+        url("/static/images/layered-peaks-haikei.png")
+    ;
+    background-size: 100% 100%;
+    background-attachment: fixed;
+
+}
+
+table, #content-related{
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0px 5px 16px -5px rgba(0, 0, 0, 0.2);
+}
+tr>th{
+    transition: all 0.3s ease-in-out;
+}
+tr:hover>th{
+    padding-left: 40px;
+}
+.dashboard #content{
+    /*padding: 0;*/
+    margin: 0;
+}
+#content-related{
+    position: absolute;
+    right: 400px;
+    padding: 32px;
+    margin-left: 20px;
+    /*border-radius: 45% 55% 66% 34% / 40% 42% 58% 60% ;*/
+}

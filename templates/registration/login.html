@@ -1,0 +1,61 @@
+{% load static %}
+<!doctype html>
+<html lang="ru">
+
+<head>
+  <title>Вход</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'bootstrap-5.3.3-dist/css/bootstrap.min.css' %}">
+{#  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">#}
+  <style>
+    .background{
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+    }
+    .background>svg{
+      width: 100%; height: 100%;
+    }
+  </style>
+</head>
+
+<body class="min-vh-100 align-items-center d-flex bg-light ">
+  <div class="background">
+    <svg id="visual" viewBox="0 0 960 540" preserveAspectRatio="none"><rect x="0" y="0" width="960" height="540" fill="#d2e0fa"></rect><path d="M0 371L22.8 368.5C45.7 366 91.3 361 137 354.3C182.7 347.7 228.3 339.3 274 332.3C319.7 325.3 365.3 319.7 411.2 318.2C457 316.7 503 319.3 548.8 333.8C594.7 348.3 640.3 374.7 686 381.7C731.7 388.7 777.3 376.3 823 363.3C868.7 350.3 914.3 336.7 937.2 329.8L960 323L960 541L937.2 541C914.3 541 868.7 541 823 541C777.3 541 731.7 541 686 541C640.3 541 594.7 541 548.8 541C503 541 457 541 411.2 541C365.3 541 319.7 541 274 541C228.3 541 182.7 541 137 541C91.3 541 45.7 541 22.8 541L0 541Z" fill="#69fa75" style="transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s;"></path><path d="M0 415L22.8 405.2C45.7 395.3 91.3 375.7 137 372.8C182.7 370 228.3 384 274 393.3C319.7 402.7 365.3 407.3 411.2 406.5C457 405.7 503 399.3 548.8 395.5C594.7 391.7 640.3 390.3 686 393.7C731.7 397 777.3 405 823 408.8C868.7 412.7 914.3 412.3 937.2 412.2L960 412L960 541L937.2 541C914.3 541 868.7 541 823 541C777.3 541 731.7 541 686 541C640.3 541 594.7 541 548.8 541C503 541 457 541 411.2 541C365.3 541 319.7 541 274 541C228.3 541 182.7 541 137 541C91.3 541 45.7 541 22.8 541L0 541Z" fill="#4fdc6f" style="transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s;"></path><path d="M0 418L22.8 422.3C45.7 426.7 91.3 435.3 137 437.7C182.7 440 228.3 436 274 432.5C319.7 429 365.3 426 411.2 421.7C457 417.3 503 411.7 548.8 414.8C594.7 418 640.3 430 686 428C731.7 426 777.3 410 823 407.2C868.7 404.3 914.3 414.7 937.2 419.8L960 425L960 541L937.2 541C914.3 541 868.7 541 823 541C777.3 541 731.7 541 686 541C640.3 541 594.7 541 548.8 541C503 541 457 541 411.2 541C365.3 541 319.7 541 274 541C228.3 541 182.7 541 137 541C91.3 541 45.7 541 22.8 541L0 541Z" fill="#39bf68" style="transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s;"></path><path d="M0 462L22.8 465.5C45.7 469 91.3 476 137 471.3C182.7 466.7 228.3 450.3 274 449.5C319.7 448.7 365.3 463.3 411.2 470.2C457 477 503 476 548.8 471.2C594.7 466.3 640.3 457.7 686 454.2C731.7 450.7 777.3 452.3 823 452C868.7 451.7 914.3 449.3 937.2 448.2L960 447L960 541L937.2 541C914.3 541 868.7 541 823 541C777.3 541 731.7 541 686 541C640.3 541 594.7 541 548.8 541C503 541 457 541 411.2 541C365.3 541 319.7 541 274 541C228.3 541 182.7 541 137 541C91.3 541 45.7 541 22.8 541L0 541Z" fill="#27a35f" style="transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s;"></path><path d="M0 480L22.8 485.3C45.7 490.7 91.3 501.3 137 501.7C182.7 502 228.3 492 274 488.2C319.7 484.3 365.3 486.7 411.2 492.3C457 498 503 507 548.8 507C594.7 507 640.3 498 686 495.5C731.7 493 777.3 497 823 494.3C868.7 491.7 914.3 482.3 937.2 477.7L960 473L960 541L937.2 541C914.3 541 868.7 541 823 541C777.3 541 731.7 541 686 541C640.3 541 594.7 541 548.8 541C503 541 457 541 411.2 541C365.3 541 319.7 541 274 541C228.3 541 182.7 541 137 541C91.3 541 45.7 541 22.8 541L0 541Z" fill="#198754" style="transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0s;"></path></svg>
+  </div>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-xl-5 col-lg-6 col-md-10 col-12 bg-white p-4 rounded-3 shadow">
+        <h2 class="text-center mb-3">Вход в аккаунт</h2>
+        {% load widget_tweaks %}
+        {% if next %}
+            <form method="post" action="{% url 'login' %}?next={{next}}">
+        {%else%}
+            <form method="post" action="{% url 'login' %}">
+        {% endif %}
+        {% csrf_token %}
+            {% if form.errors %}
+                <p class="text-danger">Логин или пароль неверны. Попробуйте снова</p>
+            {% endif %}
+          <div class="form-group mb-3">
+            <label for="email">Имя пользователя</label>
+              {% render_field form.username class="form-control" %}
+{#            <input type="email" class="form-control" id="email" placeholder="Enter email">#}
+          </div>
+          <div class="form-group mb-3">
+            <label for="password">Пароль</label>
+              {% render_field form.password  class="form-control" %}
+{#            <input type="password" class="form-control" id="password" placeholder="Password">#}
+          </div>
+          <div class="justify-content-center d-flex">
+            <button type="submit" class="btn btn-success px-4">Войти</button>
+{#              <input type="submit" value="login" />#}
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </div>
+</body>
+</html>

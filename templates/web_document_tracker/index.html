@@ -1,0 +1,64 @@
+{% extends 'web_document_tracker/wrapper.html' %}
+{% load static %}
+{% block title %} Главная страница {% endblock %}
+{% block content %}
+
+    <nav class="">  {# пагинация #}
+        {% load myTags %}
+        <ul class="pagination justify-content-center">
+            {% if elements.has_previous %}
+                <li class="page-item">
+                    <a class="page-link text-success" href="?{% param_replace page=1 %}">&laquo; первая</i></a>
+                </li>
+                <li class="page-item">
+                    <a class="page-link text-success" href="?{% param_replace page=elements.previous_page_number %}"><i class="bi bi-arrow-left-short"></i></a>
+                </li>
+            {% else %}      <!--отключенные кнопки-->
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">&laquo; первая</i></a>
+                </li>
+                <li class="page-item disabled">
+                    <a class="page-link" href="#"><i class="bi bi-arrow-left-short"></i></a>
+                </li>
+            {% endif %}
+            <li class="page-item page-link active bg-success border-0">Страница {{ elements.number }} из {{ elements.paginator.num_pages }}.</li>
+            {% if elements.has_next %}
+                <li class="page-item ">
+<!--                        <a class="page-link" href="?page={{ elements.next_page_number }}"><i class="bi bi-arrow-right-short"></i></a>-->
+                        <a class="page-link text-success" href="?{% param_replace page=elements.next_page_number %}"><i class="bi bi-arrow-right-short"></i></a>
+                    </li>
+                <li class="page-item">
+                    <a class="page-link text-success" href="?{% param_replace page=elements.paginator.num_pages %}">последняя &raquo;</a>
+                </li>
+            {% else %}      <!--отключенные кнопки-->
+                <li class="page-item disabled">
+                    <a class="page-link" href="#"><i class="bi bi-arrow-right-short"></i></a>
+                </li>
+                <li class="page-item disabled">
+                    <a class="page-link" href="#">последняя &raquo;</a>
+                </li>
+            {% endif %}
+        </ul>
+    </nav>
+{#<form action="{% url 'logout' %}" method="post">#}
+{#    {% csrf_token %}#}
+{#    <button type="submit" class="btn btn-danger">Logout</button>#}
+{#</form>#}
+    <ul class="list-group">
+        {% for i in elements %}
+            <li class="list-group-item">
+            <div class="row">
+                <div class="col-10">
+                    <h3>{{ i.type }}</h3>
+                    <p>{{ i }}</p>
+                </div>
+                <div class="col-2  d-flex justify-content-center align-items-center">
+                    <button class="btn btn-success h-75">Открыть</button>
+                </div>
+            </div>
+
+
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}

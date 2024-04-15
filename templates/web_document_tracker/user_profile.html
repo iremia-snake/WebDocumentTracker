@@ -1,0 +1,108 @@
+{% extends "web_document_tracker/wrapper.html" %}
+{% load static %}
+{% load widget_tweaks %}
+{% block title %} Профиль {% endblock %}
+{% block content %}
+    <div class="header-bar">
+        <h4>
+{#            <a href="{{ request.META.HTTP_REFERER }}" class="link-success text-decoration-none">#}
+{#                <i class="bi bi-arrow-left-circle-fill"></i> Назад#}
+{#            </a>#}
+            <a href="javascript:history.back()" class="link-success text-decoration-none">
+                <i class="bi bi-arrow-left-circle-fill"></i> Назад
+            </a>
+        </h4>
+        <h1>
+            {{ user.last_name }}
+            {{ user.first_name }}
+        </h1>
+    </div>
+    <div class="card-body" id="person-card">
+        <p>
+            {% if user.profile.profile_pic %}
+                <img src="{{ user.profile.profile_pic.url }}" height=100 width=100 id="imageProfile" class="rounded-1" style="object-fit: cover;">
+            {% else %}
+                <img src="{% static 'images/noavatar.png' %}" height=100 width=100 id="imageProfile" class="rounded-1">
+            {% endif %}
+        </p>
+        <p>
+            <strong>Логин:</strong>
+            {{ user.username }}
+        </p>
+        <p>
+            <strong>О себе:</strong>
+            {{ user.profile.info }}
+        </p>
+        {% if user.profile.contact %}
+            <p>
+                <strong>Контакты:</strong>
+                {{ user.profile.contact }}
+            </p>
+        {% endif %}
+        <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#exampleModal">
+            Изменить данные
+        </button>
+        <a href="{% url 'link_logout' %}" class="btn btn-outline-danger px-4">Выход</a>
+    </div>
+    <div class="modal fade" tabindex="-1" id="exampleModal" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Изменение данных пользователя</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-12 col-lg-6">
+                                <div class="form-group mb-2">
+                                    <label for="username-input" class="form-label">username</label>
+                                    {% render_field user_form.username class="form-control" id="username-input" %}
+{#                                    <input id="username-input" class="form-control" type="text" name="">#}
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label for="email-input" class="form-label">email</label>
+                                    {% render_field user_form.email class="form-control" id="email-input" %}
+{#                                    <input id="email-input" class="form-control" type="email" name="">#}
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label for="password" class="form-label">password</label>
+                                    <a href="#" class="btn btn-outline-primary d-block">change password</a>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-6">
+                                <div class="form-group mb-2">
+                                    <label for="first-name-input" class="form-label">first name</label>
+                                    {% render_field user_form.first_name class="form-control" id="first-name-input" %}
+{#                                    <input id="first-name-input" class="form-control" type="text" name="">#}
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label for="last-name-input" class="form-label">last name</label>
+                                    {% render_field user_form.last_name class="form-control" id="last-name-input" %}
+{#                                    <input id="last-name-input" class="form-control" type="text" name="">#}
+                                </div>
+                                <div class="form-group mb-2">
+                                    <label for="profile-picture-input" class="form-label">Изображение профиля:</label>
+                                    {% render_field profile_form.profile_pic class="form-control" id="profile-picture-input" %}
+{#                                    <input type="file" name="profile-picture" id="profile_picture" class="form-control">#}
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="form-group mb-3">
+                                    <label for="info-input" class="form-label">Example textarea</label>
+                                    {% render_field profile_form.info class="form-control" id="info-input" rows="3" %}
+{#                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>#}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="submit" class="btn btn-success">Сохранить</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,18 @@
+{% extends "web_document_tracker/wrapper.html" %}
+{% load static %}
+{% block title %} Поддержка {% endblock %}
+{% block content %}
+    <h1 class="text-center">Техническая поддержка</h1>
+<p>Если у вас остались вопросы, то задавайте их по телефону:</p>
+<table class="col-md-12 col-lg-5 col-xl-4">
+    {% for i in phones %}
+        <tr>
+            <td><a href="tel:{{i.phone}}" class="link-success">{{i.phone}}</a><button class="btn  mx-3 copy_button"><i class="bi bi-copy"></i></button></td>
+            <td>{{ i.state }}</td>
+        </tr>
+    {% endfor %}
+</table>
+    <hr>
+<p>Наше расположение:</p>
+<iframe  class="rounded-2 border border-2 border-test" src="https://yandex.ru/map-widget/v1/?um=constructor%3A097ab78cf01783ee00a388b1c01b824937a71282761f9875117ebd2f02cd4031&amp;source=constructor" width="100%" height="420" frameborder="0"></iframe>
+{% endblock %}
