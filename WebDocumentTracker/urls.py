@@ -32,4 +32,6 @@ urlpatterns = [
 ]
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
 handler404 = 'web_document_tracker.views.error_404_view'
+handler500 = 'web_document_tracker.views.error_500_view'

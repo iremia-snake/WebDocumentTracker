@@ -2,12 +2,14 @@
 {% load static %}
 {% load widget_tweaks %}
 {% block title %} Профиль {% endblock %}
+{% block style %}
+    <style>
+    {#.modal.fade.show{backdrop-filter: blur(10px)}#}
+    </style>
+{% endblock %}
 {% block content %}
     <div class="header-bar">
         <h4>
-{#            <a href="{{ request.META.HTTP_REFERER }}" class="link-success text-decoration-none">#}
-{#                <i class="bi bi-arrow-left-circle-fill"></i> Назад#}
-{#            </a>#}
             <a href="javascript:history.back()" class="link-success text-decoration-none">
                 <i class="bi bi-arrow-left-circle-fill"></i> Назад
             </a>
@@ -57,28 +59,28 @@
                         <div class="row">
                             <div class="col-md-12 col-lg-6">
                                 <div class="form-group mb-2">
-                                    <label for="username-input" class="form-label">username</label>
+                                    <label for="username-input" class="form-label">{{ user_form.username.label }}</label>
                                     {% render_field user_form.username class="form-control" id="username-input" %}
 {#                                    <input id="username-input" class="form-control" type="text" name="">#}
                                 </div>
                                 <div class="form-group mb-2">
-                                    <label for="email-input" class="form-label">email</label>
+                                    <label for="email-input" class="form-label">{{ user_form.email.label }}</label>
                                     {% render_field user_form.email class="form-control" id="email-input" %}
 {#                                    <input id="email-input" class="form-control" type="email" name="">#}
                                 </div>
                                 <div class="form-group mb-2">
-                                    <label for="password" class="form-label">password</label>
+                                    <label for="password" class="form-label">Пароль</label>
                                     <a href="#" class="btn btn-outline-primary d-block">change password</a>
                                 </div>
                             </div>
                             <div class="col-md-12 col-lg-6">
                                 <div class="form-group mb-2">
-                                    <label for="first-name-input" class="form-label">first name</label>
+                                    <label for="first-name-input" class="form-label">{{ user_form.first_name.label }}</label>
                                     {% render_field user_form.first_name class="form-control" id="first-name-input" %}
 {#                                    <input id="first-name-input" class="form-control" type="text" name="">#}
                                 </div>
                                 <div class="form-group mb-2">
-                                    <label for="last-name-input" class="form-label">last name</label>
+                                    <label for="last-name-input" class="form-label">{{ user_form.last_name.label }}</label>
                                     {% render_field user_form.last_name class="form-control" id="last-name-input" %}
 {#                                    <input id="last-name-input" class="form-control" type="text" name="">#}
                                 </div>
@@ -90,7 +92,7 @@
                             </div>
                             <div class="col">
                                 <div class="form-group mb-3">
-                                    <label for="info-input" class="form-label">Example textarea</label>
+                                    <label for="info-input" class="form-label">{{ profile_form.info.label }}</label>
                                     {% render_field profile_form.info class="form-control" id="info-input" rows="3" %}
 {#                                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>#}
                                 </div>

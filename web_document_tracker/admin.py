@@ -21,3 +21,4 @@ admin.site.register(TradingPlatform)
 
 admin.site.site_header = "Моя пользовательская админка"
 admin.site.site_title = "Моя админка"
+admin.site

@@ -3,6 +3,7 @@
 {% load widget_tweaks %}
 {% block title %} Добавление записи {% endblock %}
 {% block content %}
+
     {% if messages %}
         <ul class="messages text-center" style="list-style: none">
             {% for message in messages %}
@@ -18,11 +19,16 @@
             {% endfor %}
         </ul>
     {% endif %}
+
     <form method="post" action="">
         {% csrf_token %}
         {% for field in contract_form %}
             <div class="form-group mb-2">
-                <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}
+                    {% if field.field.required %}
+                        <span class="text-danger">*</span>
+                    {% endif %}
+                </label>
                 {% render_field field|add_class:"form-control" %}
             </div>
         {% endfor %}
@@ -36,16 +42,91 @@
                             {% render_field field class="form-check-input" %}
                             <label class="form-check-label">{{ field.label }}</label>
                         {% else %}
-                            <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}</label>
-                            {{ field|add_class:"form-control" }}
+                            <label class="form-label" for="{{ field.id_for_label }}">{{ field.label }}
+                                {% if field.field.required %}
+                                    <span class="text-danger">*</span>
+                                {% endif %}
+                            </label>
+                            {% render_field field|add_class:"form-control" %}
                         {% endif %}
                     </div>
             {% endfor %}
+            <div class="row">
+                <div class="col-4 mb-2">
+                    <button type="button" class="btn btn-outline-dark" data-bs-toggle="modal" data-bs-target="#platformFade">
+                    добавить платформу
+                    </button>
+                </div>
+            </div>
             </div>
         {% endfor %}
         <input type="submit" value="Сохранить" class="btn btn-success">
     </form>
-    <script>
 
+
+    <div class="modal fade" tabindex="-1" id="platformFade" data-bs-backdrop="static" data-bs-keyboard="false">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Платформа</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Закрыть"></button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="" enctype="multipart/form-data" id="addPlatformForm">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-12 col-lg-6">
+                                <div class="form-group mb-2">
+                                    <label for="username-input" class="form-label">Название</label>
+                                    {% render_field platform_form.name class="form-control" %}
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-lg-6">
+                                <div class="form-group mb-2">
+                                    <label for="username-input" class="form-label">url</label>
+                                    {% render_field platform_form.url class="form-control" %}
+                                </div>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" onclick="addNewPlatform()" class="btn btn-success">Сохранить</button>
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
+{% block scripts %}
+<script>
+    const addNewPlatform = () => {
+        var form = document.getElementById('addPlatformForm');
+        var formData = new FormData(form);
+        var csrfToken = form.querySelector('input[name="csrfmiddlewaretoken"]').value;
+
+        formData.append('csrfmiddlewaretoken', csrfToken);
+        fetch("{% url 'addAjax' %}", {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': csrfToken
+            },
+            body: formData
+                {#'name': formData.get('name'),#}
+                {#'url': formData.get('url')#}
+        })
+        .then(response => response.json())
+        .then(data => {
+            var platformList = JSON.parse(data.platform_list);
+            for (let i =0; i < platformList.length; i++){
+                console.log(platformList[i]);
+            }
+            // Обновление списка платформ на форме
+        })
+        .catch(error => {
+            console.error('Error:', error);
+        });
+    };
 </script>
 {% endblock %}

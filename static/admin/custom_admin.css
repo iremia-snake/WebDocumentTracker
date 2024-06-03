@@ -1,9 +1,9 @@
 html[data-theme="light"], :root {
     --primary: #79aec8;
     /*--secondary: #417690;*/
-    --secondary: #4c80d3;
+    --secondary: #579da9;
     /*--accent: #f5dd5d;*/
-    --accent: #fff098;
+    --accent: #ffeaca;
     --primary-fg: #fff;
     --body-fg: #333;
     --body-bg: #fff;
@@ -17,7 +17,7 @@ html[data-theme="light"], :root {
     --breadcrumbs-fg: #c4dce8;
     --breadcrumbs-link-fg: var(--body-bg);
     /*--breadcrumbs-bg: #264b5d;*/
-    --breadcrumbs-bg: #2e5086;
+    --breadcrumbs-bg: #2e7986;
     /*--link-fg: #417893;*/
     --link-fg: var(--breadcrumbs-bg);
     /*--link-hover-color: #036;*/
@@ -69,7 +69,7 @@ tr>th{
     transition: all 0.3s ease-in-out;
 }
 tr:hover>th{
-    padding-left: 40px;
+    padding-left: 4px;
 }
 .dashboard #content{
     /*padding: 0;*/

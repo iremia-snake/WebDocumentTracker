@@ -1,0 +1,30 @@
+{% extends "web_document_tracker/wrapper.html" %}
+{% load static %}
+{% block title %} ошибка сервера {% endblock %}
+{% block content %}
+    <div class="d-flex align-items-center justify-content-center vh-100 bg-light">
+            <div class="text-center row">
+                <div class="col-md-6">
+                    <h1 class="text-danger" style="font-size: 200px">500</h1>
+                </div>
+                <div class="col-md-6 mt-5">
+                    <p class="fs-3"> <span class="text-danger">Ошибка!</span> Сервер не разобрался что делать, зовите бригаду!</p>
+                    <p class="fs-3">/ᐠ - ˕ -マ</p>
+                    <p class="lead">Вообще всё не так.</p>
+                    {% if type or value or traceback %}
+                        <p class="text-start alert alert-primary">
+                            Type: <span class="lead">{{ type }}</span>
+                            <br />
+                            Value: <span class="lead">{{ value }}</span>
+                            <br />
+                            Traceback: <span class="lead">{{ traceback }}</span>
+                            <br />
+                        </p>
+                    {% endif %}
+                    <a href="{% url 'home' %}" class="btn btn-success">На главную</a>
+                    <a href="{% url 'about' %}" class="btn btn-danger">Техподдержка</a>
+                </div>
+
+            </div>
+        </div>
+{% endblock %}

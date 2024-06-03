@@ -1,0 +1,41 @@
+{% extends "web_document_tracker/wrapper.html" %}
+{% load static %}
+{% block title %} Запись {% endblock %}
+{% block content %}
+    <h4>
+            <a href="javascript:history.back()" class="link-success text-decoration-none">
+                <i class="bi bi-arrow-left-circle-fill"></i> Назад
+            </a>
+    </h4>
+    <h3 class="text-center mb-4">{{ contract }}</h3>
+    <div class="row">
+        <div class="col-6">
+            <p class="">тип: {{ contract.type }}</p>
+            <p class="">оформлен: {{ contract.extra_data_model.date |date:"d M Y"}}</p>
+            {% if contract.trading_platform %}
+                <p>на платформе:
+                    <a href="{{ contract.trading_platform.url }}">{{ contract.trading_platform.name }}</a>
+                </p>
+            {% endif %}
+            <p class="">сроки действия: {{ contract.extra_data_model.start_date|date:"d M Y" }} - {{ contract.extra_data_model.end_date|date:"d M Y" }}</p>
+            <p class="">оплата: {{ contract.extra_data_model.price }} ₽</p>
+            {% if contract.extra_data_model.payment_term %}
+                <p class="">условия оплаты: {{ contract.extra_data_model.payment_term }}</p>
+            {% endif %}
+        </div>
+        <div class="col-6">
+            <p class="">{{ contract.extra_data_model.subject }}</p>
+            <a href="#" class="text-decoration-none text-success text-center">
+                <i class="bi bi-file-earmark-arrow-down h1"></i>
+                <p class="d-inline-block h5">скачать документ</p>
+            </a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <a class="btn btn-outline-dark" href="{% url 'edit' contract.id %}">редактировать запись</a>
+        </div>
+    </div>
+
+
+{% endblock %}

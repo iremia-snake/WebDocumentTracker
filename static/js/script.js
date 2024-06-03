@@ -3,27 +3,65 @@ window.onload = Main;
 function Main(){
     ActiveCopyButtons('.copy_button');
 
+    // $(function() {
+    //     moment.locale('ru');
+    //     $('input.date-range-picker').daterangepicker({
+    //         drops: 'auto',
+    //         autoUpdateInput: true,
+    //         // autoApply: true,
+    //         linkedCalendars: false,
+    //         showDropdowns: true,
+    //         locale: {
+    //             cancelLabel: 'Clear'
+    //         },
+    //         buttonClasses: 'btn',
+    //         applyButtonClasses: 'btn-success',
+    //         cancelButtonClasses: 'btn-secondary',
+    //     });
+    //     let dateFormat = 'DD MMMM YYYY'
+    //     $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
+    //         $(this).val(picker.startDate.format(dateFormat) + ' - ' + picker.endDate.format(dateFormat));
+    //     });
+    //     $('input[name="daterange"]').on('cancel.daterangepicker', function(ev, picker) {
+    //         $(this).val('');
+    //     });
+    // });
     $(function() {
         moment.locale('ru');
-        $('input.date-range-picker').daterangepicker({
-            drops: 'auto',
-            autoUpdateInput: true,
-            // autoApply: true,
-            linkedCalendars: false,
-            showDropdowns: true,
-            locale: {
-                cancelLabel: 'Clear'
-            },
-            buttonClasses: 'btn',
-            applyButtonClasses: 'btn-success',
-            cancelButtonClasses: 'btn-secondary',
-        });
-        let dateFormat = 'DD MMMM YYYY'
-        $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
-            $(this).val(picker.startDate.format(dateFormat) + ' - ' + picker.endDate.format(dateFormat));
-        });
-        $('input[name="daterange"]').on('cancel.daterangepicker', function(ev, picker) {
-            $(this).val('');
+        $('.date-range-picker').each(function() {
+            let $this = $(this);
+
+            let drops = $this.data('drops') || 'down';
+            let single = $this.data('single') || false;
+
+            $this.daterangepicker({
+                autoUpdateInput: false,
+                singleDatePicker: single,
+                drops: drops,
+                linkedCalendars: false,
+                showDropdowns: true,
+                locale: {
+                    cancelLabel: 'Clear'
+                },
+                buttonClasses: 'btn',
+                applyButtonClasses: 'btn-success',
+                cancelButtonClasses: 'btn-secondary',
+            });
+
+            let dateFormat = 'DD.MM.YYYY';
+            if (single){
+                $this.on('apply.daterangepicker', function(ev, picker) {
+                    $(this).val(picker.startDate.format(dateFormat))
+                });
+            }else{
+                $this.on('apply.daterangepicker', function(ev, picker) {
+                    $(this).val(picker.startDate.format(dateFormat) + ' - ' + picker.endDate.format(dateFormat));
+                });
+            }
+
+            $this.on('cancel.daterangepicker', function(ev, picker) {
+                $(this).val('');
+            });
         });
     });
 }

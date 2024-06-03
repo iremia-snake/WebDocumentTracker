@@ -1,7 +1,7 @@
 from django import template
 
 register = template.Library()
-@register.simple_tag(takes_context=True)
+@register.simple_tag(takes_context=True)    # изменение параметра в url. взято со StackOverflow. Как работает - неизвестно
 def param_replace(context, path='', **kwargs):
     d = context['request'].GET.copy()
     for k, v in kwargs.items():
