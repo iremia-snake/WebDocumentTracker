@@ -105,12 +105,10 @@ class ExtraDataForm(ModelForm):
         instance = super().save(commit=False)
 
         date_range = self.cleaned_data.get('date_range')
-        date_start, date_end = date_range.split(' - ')
-        instance.start_date = datetime.strftime(datetime.strptime(date_start,'%d.%m.%Y'), '%Y-%m-%d')
-        instance.end_date = datetime.strftime(datetime.strptime(date_end, '%d.%m.%Y'), '%Y-%m-%d')
-
-        # date = self.cleaned_data.get('date')
-        # instance.date = datetime.strftime(date, '%Y-%m-%d')
+        if len(date_range):
+            date_start, date_end = date_range.split(' - ')
+            instance.start_date = datetime.strftime(datetime.strptime(date_start,'%d.%m.%Y'), '%Y-%m-%d')
+            instance.end_date = datetime.strftime(datetime.strptime(date_end, '%d.%m.%Y'), '%Y-%m-%d')
 
         if commit:
             instance.save()

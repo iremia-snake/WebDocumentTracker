@@ -3,29 +3,6 @@ window.onload = Main;
 function Main(){
     ActiveCopyButtons('.copy_button');
 
-    // $(function() {
-    //     moment.locale('ru');
-    //     $('input.date-range-picker').daterangepicker({
-    //         drops: 'auto',
-    //         autoUpdateInput: true,
-    //         // autoApply: true,
-    //         linkedCalendars: false,
-    //         showDropdowns: true,
-    //         locale: {
-    //             cancelLabel: 'Clear'
-    //         },
-    //         buttonClasses: 'btn',
-    //         applyButtonClasses: 'btn-success',
-    //         cancelButtonClasses: 'btn-secondary',
-    //     });
-    //     let dateFormat = 'DD MMMM YYYY'
-    //     $('input[name="daterange"]').on('apply.daterangepicker', function(ev, picker) {
-    //         $(this).val(picker.startDate.format(dateFormat) + ' - ' + picker.endDate.format(dateFormat));
-    //     });
-    //     $('input[name="daterange"]').on('cancel.daterangepicker', function(ev, picker) {
-    //         $(this).val('');
-    //     });
-    // });
     $(function() {
         moment.locale('ru');
         $('.date-range-picker').each(function() {

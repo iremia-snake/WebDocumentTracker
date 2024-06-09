@@ -34,6 +34,13 @@ def addAjax(request):
     if request.method == 'POST':
         form = TradingPlatformForm(request.POST, request.FILES)
         if form.is_valid():
+            new_platform_name = form.cleaned_data.get('name')
+            new_platform_url = form.cleaned_data.get('url')
+            existing_platform = TradingPlatform.objects.filter(
+                Q(name_lower=new_platform_name.lower()) | Q(url= new_platform_url)
+            ).first()
+            if existing_platform:
+                return JsonResponse({'error': 'Platform already exists!'}, status=400)
             form.save()
             platforms = TradingPlatform.objects.all()
             platform_list = serializers.serialize('json', platforms)
@@ -91,7 +98,7 @@ def editView(request, contract_id):
             contract_form.save()
             extra_data_formset.save()
             messages.success(request, 'Информация успешно обновлена!')
-            return redirect('home')
+            return redirect('view_contract', contract_id=contract_id)
         else:
             contract_errors = contract_form.errors
             extra_data_errors = extra_data_formset.errors

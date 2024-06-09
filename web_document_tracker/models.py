@@ -114,10 +114,11 @@ class ExtraData(models.Model):
     subject = models.CharField(max_length=100)
     price = models.DecimalField(max_digits=14, decimal_places=4, default=0, blank=True)
     payment_term = models.CharField(max_length=500, null=True, blank=True)
-    start_date = models.DateTimeField()
-    end_date = models.DateTimeField()
+    start_date = models.DateTimeField(null=True)
+    end_date = models.DateTimeField(null=True)
     registration_number = models.CharField(max_length=10, null=True, blank=True)
     contract_id = models.OneToOneField(Contract, on_delete=models.CASCADE, null=True, related_name='extra_data_model')
+
 
 @receiver(post_delete, sender=ExtraData)
 def delete_related_extra_data(sender, instance, **kwargs):
